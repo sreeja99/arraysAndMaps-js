@@ -1,7 +1,34 @@
-let monthMap = new Map([[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[11,0],[12,0]]);
-for (let i=1;i<=50;i++){
-let month = Math.floor(Math.random()*100)%12+1;
-let count =monthMap.get(month);
-monthMap.set(month, ++count);
+//a
+let dice = 1 + (Math.floor(Math.random() * 10) % 6);
+
+//b
+while (true) {
+  dice = 1 + (Math.floor(Math.random() * 10) % 6);
+  if (dice == 6) break;
 }
-console.log(monthMap);
+//c
+let counter = 0;
+let dictionary = new Map();
+while (true) {
+  dice = 1 + (Math.floor(Math.random() * 10) % 6);
+  if (dictionary.has(dice)) {
+    counter = dictionary.get(dice);
+    dictionary.set(dice, ++counter);
+  } else {
+    dictionary.set(dice, 1);
+  }
+  if (dice == 6) break;
+}
+//d
+dictionary = new Map();
+
+while (true) {
+  dice = 1 + (Math.floor(Math.random() * 10) % 6);
+  counter = 0;
+  if (dictionary.has(dice)) counter = dictionary.get(dice);
+  dictionary.set(dice, ++counter);
+  if (Array.from(dictionary.values()).includes(10)) break;
+}
+console.log(dictionary);
+let sortedMap=new Map([...dictionary.entries()]).sort();
+console.log(sortedMap);
